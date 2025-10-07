@@ -462,6 +462,3 @@ scratch/
 !.gitkeep
 
 .kiro
-
-# Ignore lexora source code folder (main SDK code)
-lexora/
