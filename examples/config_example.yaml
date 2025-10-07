@@ -1,0 +1,27 @@
+# Example RAGAgent Configuration (YAML)
+# This file demonstrates how to configure the RAGAgent using a YAML file
+
+llm:
+  provider: openai
+  model: gpt-3.5-turbo
+  # API key can be set here or via environment variable
+  api_key: ${OPENAI_API_KEY}
+  temperature: 0.7
+  max_tokens: 2000
+
+vector_db:
+  provider: faiss
+  # Use mock embedding model for testing (no API key needed)
+  # For production, use: text-embedding-ada-002
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  dimension: 384
+  connection_params:
+    index_path: ./faiss_index
+    metric: cosine
+
+agent:
+  max_context_length: 8000
+  max_tool_calls: 10
+  reasoning_model: null
+  enable_memory: true
+  log_level: INFO

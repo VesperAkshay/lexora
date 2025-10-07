@@ -1,0 +1,20 @@
+llm:
+  provider: mock
+  model: mock-model
+  api_key: null
+  temperature: 0.7
+  max_tokens: 2000
+  additional_params: {}
+vector_db:
+  provider: faiss
+  connection_params:
+    index_path: ./faiss_index
+    metric: cosine
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  dimension: 384
+agent:
+  max_context_length: 50000
+  max_tool_calls: 20
+  reasoning_model: null
+  enable_memory: true
+  log_level: INFO

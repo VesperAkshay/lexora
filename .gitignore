@@ -1,0 +1,467 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Project-specific
+
+# Vector database storage (runtime data, not source code)
+faiss_storage/
+*.faiss
+*.index
+embeddings_cache/
+# Note: lexora/vector_db/ is source code and should NOT be ignored
+
+# LLM and API keys
+*.key
+*.pem
+.api_keys
+secrets/
+.secrets/
+credentials/
+.credentials/
+
+# Configuration files with sensitive data
+config.local.yaml
+config.local.json
+.env.local
+.env.production
+.env.development
+
+# Encryption keys
+.encryption_key
+*.enc
+
+# Data files
+data/
+datasets/
+corpus_data/
+*.csv
+*.json
+*.jsonl
+*.parquet
+*.pkl
+*.pickle
+
+# Logs
+logs/
+*.log
+*.log.*
+log/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Model files (large binary files, not source code)
+# Note: lexora/models/ is source code and should NOT be ignored
+downloaded_models/
+pretrained_models/
+*.bin
+*.pt
+*.pth
+*.onnx
+*.h5
+*.hdf5
+*.safetensors
+
+# Backup files
+*.bak
+*.backup
+backup/
+backups/
+
+# Test outputs
+test_output/
+test_results/
+.test_cache/
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+docs/build/
+
+# Profiling data
+*.prof
+*.lprof
+profile_results/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache directories
+.cache/
+cache/
+__cache__/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb
+
+# Local development
+local/
+.local/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Kubernetes
+*.kubeconfig
+k8s/secrets/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Package manager locks (optional - uncomment if you want to ignore)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# IDE-specific
+.fleet/
+.cursor/
+
+# OS-specific
+*.swp
+*.swo
+.*.swp
+.*.swo
+
+# Project artifacts
+artifacts/
+outputs/
+results/
+
+# Benchmark results
+benchmarks/results/
+*.benchmark
+
+# Generated files
+generated/
+auto_generated/
+
+# User-specific files
+user_data/
+user_config/
+.user/
+
+# Monitoring and metrics
+metrics/
+monitoring/
+*.metrics
+
+# SSL certificates
+*.crt
+*.cer
+*.der
+*.p12
+*.pfx
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# GPG keys
+*.gpg
+*.asc
+
+# Compiled translations
+locale/*/LC_MESSAGES/*.mo
+
+# Sentry
+.sentryclirc
+
+# Serverless
+.serverless/
+
+# AWS
+.aws/
+
+# Google Cloud
+.gcloud/
+gcloud-credentials.json
+
+# Azure
+.azure/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Pytest
+.pytest_cache/
+pytest_cache/
+
+# Tox
+.tox/
+
+# Nox
+.nox/
+
+# Ruff
+.ruff_cache/
+
+# Black
+.black/
+
+# isort
+.isort.cfg
+
+# Pylint
+.pylint.d/
+
+# Bandit
+.bandit
+
+# Safety
+.safety
+
+# Pre-commit
+.pre-commit-config.yaml.backup
+
+# Node modules (if using any JS tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+*.whl
+*.tar.gz
+*.zip
+
+# Experimental features
+experimental/
+sandbox/
+playground/
+
+# Personal notes
+notes.txt
+TODO.txt
+NOTES.md
+scratch/
+
+# Large files
+*.mp4
+*.avi
+*.mov
+*.mp3
+*.wav
+*.pdf
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Ignore all .env files except .env.example
+.env*
+!.env.example
+
+# Keep empty directories with .gitkeep
+!.gitkeep
+
+.kiro
+
+# Ignore lexora source code folder (main SDK code)
+lexora/
