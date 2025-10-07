@@ -1,0 +1,54 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Extract version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.ref_name }}
+          body: |
+            ## 🎉 Lexora ${{ steps.get_version.outputs.VERSION }} Released!
+            
+            ### 📦 Installation
+            ```bash
+            pip install lexora==${{ steps.get_version.outputs.VERSION }}
+            ```
+            
+            ### 🔗 Links
+            - **[📦 PyPI Package](https://pypi.org/project/lexora/${{ steps.get_version.outputs.VERSION }}/)**
+            - [📖 Documentation](https://github.com/${{ github.repository }}/blob/main/README.md)
+            - [🚀 Getting Started](https://github.com/${{ github.repository }}/blob/main/docs/GETTING_STARTED.md)
+            
+            ### ✨ Features
+            - Production-ready Agentic RAG SDK
+            - Multiple vector database support (FAISS, Pinecone, Chroma)
+            - Flexible LLM integration via LiteLLM
+            - 10+ built-in RAG tools
+            - Custom tool support
+            
+            ### 📝 What's Changed
+            See the [full changelog](https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}) for details.
+            
+            ---
+            
+            **Full Changelog**: https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}
+          draft: false
+          prerelease: false
