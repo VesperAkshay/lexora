@@ -418,13 +418,14 @@ class HealthCheckTool(BaseTool):
             return result
             
         except Exception as e:
-        except Exception as e:
             return {
                 "status": "unhealthy",
                 "model_name": getattr(getattr(self.embedding_manager, 'provider', None), 'model_name', 'unknown') if self.embedding_manager else 'unknown',
                 "error": str(e),
                 "timestamp": datetime.utcnow().isoformat()
-            }    async def _check_system_health(self, detailed: bool) -> Dict[str, Any]:
+            }
+    
+    async def _check_system_health(self, detailed: bool) -> Dict[str, Any]:
         """
         Check system-level health.
         

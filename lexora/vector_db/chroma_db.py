@@ -415,7 +415,8 @@ class ChromaVectorDB(BaseVectorDB):
                     # Ensure final similarity is clamped to [0.0, 1.0]
                     similarity_score = max(0.0, min(1.0, similarity_score))
                     
-                    # Create Document object                    document = Document(
+                    # Create Document object
+                    document = Document(
                         id=doc_id,
                         content=content,
                         metadata=metadata,

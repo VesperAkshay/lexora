@@ -7,7 +7,7 @@ embedding generation, text chunking, and batch processing support.
 
 import uuid
 from typing import Any, Dict, List, Optional, Union
-from datetime import datetime
+from datetime import datetime, timezone
 
 from .base_tool import BaseTool, ToolParameter, ParameterType
 from ..models.core import Document
@@ -263,13 +263,7 @@ class AddDataTool(BaseTool):
                 
                 doc_id = doc_data.get("id")
                 if not doc_id and self.auto_generate_ids:
-from datetime import datetime, timezone
-
-# … other imports …
-
-doc_id = doc_data.get("id")
-if not doc_id and self.auto_generate_ids:
-    doc_id = f"doc_{uuid.uuid4().hex[:8]}_{int(datetime.now(timezone.utc).timestamp())}"                
+                    doc_id = f"doc_{uuid.uuid4().hex[:8]}_{int(datetime.now(timezone.utc).timestamp())}"                
                 doc_metadata = doc_data.get("metadata", {})
                 
                 # Add processing metadata

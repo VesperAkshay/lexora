@@ -184,33 +184,18 @@ class GetCorpusInfoTool(BaseTool):
                 result["similarity_metric"] = corpus_info.metadata.get("similarity_metric", "unknown")
                 result["embedding_model"] = corpus_info.metadata.get("embedding_model", "unknown")
                 result["created_by"] = corpus_info.metadata.get("created_by", "unknown")
-                
-                # Calculate age
-# --- file: lexora/tools/get_corpus_info.py
-# (around line 9)
-from datetime import datetime, timezone
-
-# ... other imports ...
-
-def _execute(self, corpus_id, ...):
-    # ... earlier code ...
--    # At top of file, ensure we import timezone as well
--    from datetime import datetime, timezone
-
-    created_at = datetime.strptime(corpus['created_at'], '%Y-%m-%dT%H:%M:%SZ')
-    created_at = created_at.replace(tzinfo=timezone.utc)
-    # ... rest of method ...
-# Calculate age
-if "created_at" in corpus_info.metadata:
-    try:
-        created_time = datetime.fromisoformat(corpus_info.metadata["created_at"])
-        age_seconds = (datetime.now(timezone.utc) - created_time).total_seconds()
-        result["age_days"] = round(age_seconds / 86400, 2)
-    except (ValueError, TypeError):
-        result["age_days"] = None
-else:
-    age_seconds = (datetime.now(timezone.utc) - corpus_info.created_at).total_seconds()
-    result["age_days"] = round(age_seconds / 86400, 2)            
+            
+            # Calculate age
+            if "created_at" in corpus_info.metadata:
+                try:
+                    created_time = datetime.fromisoformat(corpus_info.metadata["created_at"])
+                    age_seconds = (datetime.now(timezone.utc) - created_time).total_seconds()
+                    result["age_days"] = round(age_seconds / 86400, 2)
+                except (ValueError, TypeError):
+                    result["age_days"] = None
+            else:
+                age_seconds = (datetime.now(timezone.utc) - corpus_info.created_at).total_seconds()
+                result["age_days"] = round(age_seconds / 86400, 2)            
             # Include detailed statistics if requested
             if include_statistics and corpus_info.document_count > 0:
                 stats = await self._compute_corpus_statistics(

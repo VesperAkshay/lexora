@@ -272,9 +272,8 @@ class DeleteDocumentTool(BaseTool):
             if not dry_run and existing_documents:
                 for doc_id in existing_documents:
                     try:
-# At the top of lexora/tools/delete_document.py
-from typing import Any, Dict, List, Optional
-from datetime import datetime, timezone                        if success:
+                        success = await self.vector_db.delete_document(corpus_name, doc_id)
+                        if success:
                             successful_deletions.append(doc_id)
                             deletion_results.append({
                                 "document_id": doc_id,

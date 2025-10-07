@@ -142,10 +142,6 @@ class LLMConfig(BaseModel):
         if not model:
             raise ValueError(f"Environment variable {prefix}MODEL is required")
         
-        return cls(
-            provider=os.getenv(f"{prefix}PROVIDER", "litellm"),
-            model=model,
-            api_key=os.getenv(f"{prefix}API_KEY"),
         try:
             temperature = float(os.getenv(f"{prefix}TEMPERATURE", "0.7"))
         except ValueError as e:
@@ -162,7 +158,7 @@ class LLMConfig(BaseModel):
             api_key=os.getenv(f"{prefix}API_KEY"),
             temperature=temperature,
             max_tokens=max_tokens
-        )        )
+        )
 
 
 class VectorDBConfig(BaseModel):
@@ -420,7 +416,6 @@ class AgentConfig(BaseModel):
         enable_memory_str = os.getenv(f"{prefix}ENABLE_MEMORY", "true").lower()
         enable_memory = enable_memory_str in ("true", "1", "yes", "on")
         
-        return cls(
         try:
             max_context_length = int(os.getenv(f"{prefix}MAX_CONTEXT_LENGTH", "8000"))
         except ValueError as e:
@@ -435,9 +430,6 @@ class AgentConfig(BaseModel):
             max_context_length=max_context_length,
             max_tool_calls=max_tool_calls,
             reasoning_model=os.getenv(f"{prefix}REASONING_MODEL"),
-            enable_memory=enable_memory,
-            log_level=os.getenv(f"{prefix}LOG_LEVEL", "INFO")
-        )            reasoning_model=os.getenv(f"{prefix}REASONING_MODEL"),
             enable_memory=enable_memory,
             log_level=os.getenv(f"{prefix}LOG_LEVEL", "INFO")
         )

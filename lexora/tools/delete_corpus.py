@@ -6,7 +6,6 @@ database with proper validation, confirmation, and safety measures.
 """
 
 from typing import Any, Dict, List, Optional
- from typing import Any, Dict, List, Optional
 from datetime import datetime, timezone
 from .base_tool import BaseTool, ToolParameter, ParameterType
 from ..models.core import CorpusInfo
@@ -185,8 +184,6 @@ class DeleteCorpusTool(BaseTool):
                     ErrorCode.TOOL_VALIDATION_FAILED
                 )
             
-            # Check confirmation phrase if required
-            if self.require_explicit_confirmation and confirmation_phrase != corpus_name:
             # Check confirmation phrase if required and provided
             if self.require_explicit_confirmation and confirmation_phrase is not None and confirmation_phrase != corpus_name:
                 raise create_tool_error(
@@ -194,7 +191,9 @@ class DeleteCorpusTool(BaseTool):
                     self.name,
                     {"corpus_name": corpus_name, "provided_phrase": confirmation_phrase},
                     ErrorCode.TOOL_VALIDATION_FAILED
-                )            is_empty = corpus_info is None or corpus_info.document_count == 0
+                )
+            
+            is_empty = corpus_info is None or corpus_info.document_count == 0
             if not is_empty and not force_delete_non_empty and not dry_run:
                 raise create_tool_error(
                     f"Corpus '{corpus_name}' contains {corpus_info.document_count} documents. "

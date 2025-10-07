@@ -822,7 +822,7 @@ def validate_schema(
                 if not prop_result.is_valid:
                     result.is_valid = False
 
-    return result    return result
+    return result
 
 
 def validate_tool_parameters(tool_name: str, parameters: Dict[str, Any], schema: Dict[str, Any]) -> None:

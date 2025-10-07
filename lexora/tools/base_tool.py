@@ -276,7 +276,6 @@ class BaseTool(ABC):
                     "tool_version": self.version,
                     "timestamp": start_time.isoformat()
                 }
-                }
             )    
     def validate_parameters(self, **kwargs) -> Dict[str, Any]:
         """
@@ -389,43 +388,45 @@ class BaseTool(ABC):
                             ErrorCode.TOOL_INVALID_PARAMETERS
                         )
                 else:
-                    value = bool(value)        elif param.type == ParameterType.ARRAY:
-            if not isinstance(value, list):
+                    value = bool(value)
+            
+            elif param.type == ParameterType.ARRAY:
+                if not isinstance(value, list):
+                    raise create_tool_error(
+                        f"Parameter '{param.name}' must be an array",
+                        self.name,
+                        ErrorCode.TOOL_INVALID_PARAMETERS
+                    )
+            elif param.type == ParameterType.OBJECT:
+                if not isinstance(value, dict):
+                    raise create_tool_error(
+                        f"Parameter '{param.name}' must be an object",
+                        self.name,
+                        ErrorCode.TOOL_INVALID_PARAMETERS
+                    )
+            
+            # Enum validation
+            if param.enum and value not in param.enum:
                 raise create_tool_error(
-                    f"Parameter '{param.name}' must be an array",
+                    f"Parameter '{param.name}' must be one of: {param.enum}",
                     self.name,
                     ErrorCode.TOOL_INVALID_PARAMETERS
                 )
-        elif param.type == ParameterType.OBJECT:
-            if not isinstance(value, dict):
-                raise create_tool_error(
-                    f"Parameter '{param.name}' must be an object",
-                    self.name,
-                    ErrorCode.TOOL_INVALID_PARAMETERS
-                )
-        
-        # Enum validation
-        if param.enum and value not in param.enum:
-            raise create_tool_error(
-                f"Parameter '{param.name}' must be one of: {param.enum}",
-                self.name,
-                ErrorCode.TOOL_INVALID_PARAMETERS
-            )
-        
-        # Range validation for numeric types
-        if param.type in (ParameterType.INTEGER, ParameterType.NUMBER):
-            if param.minimum is not None and value < param.minimum:
-                raise create_tool_error(
-                    f"Parameter '{param.name}' must be >= {param.minimum}",
-                    self.name,
-                    ErrorCode.TOOL_INVALID_PARAMETERS
-                )
-            if param.maximum is not None and value > param.maximum:
-                raise create_tool_error(
-                    f"Parameter '{param.name}' must be <= {param.maximum}",
-                    self.name,
-                    ErrorCode.TOOL_INVALID_PARAMETERS
-                )
+            
+            # Range validation for numeric types
+            if param.type in (ParameterType.INTEGER, ParameterType.NUMBER):
+                if param.minimum is not None and value < param.minimum:
+                    raise create_tool_error(
+                        f"Parameter '{param.name}' must be >= {param.minimum}",
+                        self.name,
+                        ErrorCode.TOOL_INVALID_PARAMETERS
+                    )
+                if param.maximum is not None and value > param.maximum:
+                    raise create_tool_error(
+                        f"Parameter '{param.name}' must be <= {param.maximum}",
+                        self.name,
+                        ErrorCode.TOOL_INVALID_PARAMETERS
+                    )
         
         # Pattern validation for strings
         if param.type == ParameterType.STRING and param.pattern:

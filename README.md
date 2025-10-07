@@ -28,11 +28,13 @@ Lexora is a production-ready Agentic RAG (Retrieval-Augmented Generation) SDK th
 
 - **Zero-Config Setup**: Get started in minutes with sensible defaults
 - **Multiple Vector Databases**: Support for FAISS, Pinecone, and Chroma
+- **Flexible Embeddings**: OpenAI, HuggingFace, Gemini, or custom providers
 - **Flexible LLM Integration**: Works with any LLM via LiteLLM
 - **Built-in RAG Tools**: 10+ pre-built tools for document management
 - **Custom Tool Support**: Easily add your own tools
 - **Production-Ready**: Comprehensive error handling, logging, and testing
 - **Type-Safe**: Full type hints and Pydantic validation
+- **Cost-Effective**: Free embedding options available
 
 ---
 
@@ -217,6 +219,81 @@ agent = RAGAgent(
     )
 )
 ```
+
+---
+
+## 🎨 Embedding Options
+
+**Important:** You are NOT limited to OpenAI embeddings! Lexora supports multiple embedding providers.
+
+### Available Options
+
+| Provider | Cost | Quality | Privacy | Best For |
+|----------|------|---------|---------|----------|
+| **HuggingFace** | Free | High | ✅ Local | Production (recommended) |
+| **OpenAI** | Paid | Highest | ❌ Cloud | Enterprise |
+| **Gemini** | Free tier | High | ❌ Cloud | Gemini users |
+| **Mock** | Free | Low | ✅ Local | Testing |
+
+### Quick Examples
+
+#### 1. Free Local Embeddings (Recommended)
+
+```python
+# Install sentence-transformers
+# pip install sentence-transformers
+
+from lexora import RAGAgent
+from lexora.models.config import VectorDBConfig
+
+agent = RAGAgent(
+    vector_db_config=VectorDBConfig(
+        provider="faiss",
+        dimension=384,  # all-MiniLM-L6-v2 dimension
+        connection_params={
+            "index_type": "Flat",
+            "persist_directory": "./vector_db"
+        }
+    )
+)
+```
+
+#### 2. OpenAI Embeddings
+
+```python
+from lexora import RAGAgent
+from lexora.models.config import VectorDBConfig
+
+agent = RAGAgent(
+    vector_db_config=VectorDBConfig(
+        provider="faiss",
+        dimension=1536,  # OpenAI dimension
+        connection_params={
+            "embedding_model": "text-embedding-ada-002",
+            "openai_api_key": "your-key"
+        }
+    )
+)
+```
+
+#### 3. Custom Embedding Provider
+
+```python
+from lexora.utils.embeddings import BaseEmbeddingProvider
+from sentence_transformers import SentenceTransformer
+
+class HuggingFaceProvider(BaseEmbeddingProvider):
+    def __init__(self, model_name="all-MiniLM-L6-v2"):
+        self.model = SentenceTransformer(model_name)
+    
+    async def generate_embedding(self, text: str):
+        return self.model.encode(text).tolist()
+    
+    def get_dimension(self) -> int:
+        return self.model.get_sentence_embedding_dimension()
+```
+
+📚 **[Full Embedding Guide](./docs/EMBEDDINGS.md)** - Detailed documentation on all embedding options
 
 ---
 

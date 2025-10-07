@@ -242,7 +242,7 @@ class ListCorporaTool(BaseTool):
             
             for corpus in corpora_info:
                 # Skip empty corpora if not requested
-                if not include_empty and corpus.get("is_empty") is True):
+                if not include_empty and corpus.get("is_empty") is True:
                     continue
                 
                 # Apply name filter
@@ -331,16 +331,9 @@ class ListCorporaTool(BaseTool):
                     "limit": limit
                 },
                 "execution_info": {
-                    "timestamp": datetime.utcnow().isoformat(),
-# --- at the top of the file (add to your existing imports) ---
-from datetime import datetime, timezone
-
-# …later, in the execution_info block…
-"execution_info": {
-    "timestamp": datetime.now(timezone.utc).isoformat(),
-    "tool_version": self.version,
-    "vector_db_provider": self.vector_db.get_provider_name()
-}                    "vector_db_provider": self.vector_db.get_provider_name()
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "tool_version": self.version,
+                    "vector_db_provider": self.vector_db.get_provider_name()
                 }
             }
             

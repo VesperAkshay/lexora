@@ -381,16 +381,14 @@ class ToolRegistry:
                             not inspect.isabstract(obj)):
                             
                             try:
-                            try:
-                                self.register_tool(obj, category=category)
-                                # Get the registered tool's name
-                                tool = self.get_tool(obj().name)
-                                if tool:
-                     except Exception as e:
-                         tool_name = getattr(temp_instance, 'name', name) if 'temp_instance' in locals() else name
-                         self.logger.warning(f"Failed to register tool {tool_name}: {str(e)}")
-             except Exception as e:
-                 self.logger.warning(f"Failed to load module {py_file}: {str(e)}")                                self.logger.warning(f"Failed to register tool {name}: {str(e)}")                                self.logger.warning(f"Failed to register tool {tool_name}: {str(e)}")            except Exception as e:                self.logger.warning(f"Failed to load module {py_file}: {str(e)}")
+                                # Instantiate once and register the instance
+                                temp_instance = obj()
+                                self.register_tool(temp_instance, category=category)
+                                loaded_tools.append(temp_instance.name)
+                            except Exception as e:
+                                self.logger.warning(f"Failed to register tool {name}: {str(e)}")
+            except Exception as e:
+                self.logger.warning(f"Failed to load module {py_file}: {str(e)}")
         
         self.logger.info(f"Loaded {len(loaded_tools)} tools from {directory}")
         return loaded_tools
@@ -420,14 +418,14 @@ class ToolRegistry:
             # Find tool classes
             for name, obj in inspect.getmembers(module, inspect.isclass):
                 if (issubclass(obj, BaseTool) and 
-                try:
-                    validate_tool_interface(obj)
-                    # Instantiate once and register the instance
-                    tool_instance = obj()
-                    self.register_tool(tool_instance, category=category)
-                    loaded_tools.append(tool_instance.name)
-                except Exception as e:
-                    self.logger.warning(f"Failed to register tool {name}: {str(e)}")                         loaded_tools.append(tool_instance.name)
+                    obj != BaseTool and 
+                    not inspect.isabstract(obj)):
+                    
+                    try:
+                        # Instantiate once and register the instance
+                        tool_instance = obj()
+                        self.register_tool(tool_instance, category=category)
+                        loaded_tools.append(tool_instance.name)
                     except Exception as e:
                         self.logger.warning(f"Failed to register tool {name}: {str(e)}")            
             self.logger.info(f"Loaded {len(loaded_tools)} tools from module {module_name}")
