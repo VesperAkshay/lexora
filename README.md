@@ -6,9 +6,10 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](./tests)
+[![PyPI version](https://img.shields.io/pypi/v/lexora.svg)](https://pypi.org/project/lexora/)
+[![Downloads](https://img.shields.io/pypi/dm/lexora.svg)](https://pypi.org/project/lexora/)
 
-[Quick Start](#quick-start) • [Documentation](#documentation) • [Examples](#examples) • [API Reference](#api-reference)
+📖 [Full Documentation](https://github.com/VesperAkshay/lexora) • 🚀 [Getting Started](https://github.com/VesperAkshay/lexora/blob/main/docs/GETTING_STARTED.md) • 💬 [Discussions](https://github.com/VesperAkshay/lexora/discussions)
 
 </div>
 

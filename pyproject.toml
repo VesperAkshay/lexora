@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lexora"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
     {name = "VesperAkshay", email = "vesperakshay@gmail.com"},
 ]

@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="lexora",
-    version="0.1.0",
+    version="0.1.1",
     author="VesperAkshay",
     author_email="vesperakshay@gmail.com",
     description="A production-ready, plug-and-play Python SDK for building intelligent RAG systems",
